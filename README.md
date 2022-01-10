@@ -9,4 +9,7 @@ This is a randome password generator
 *CSS
 
 ## Website
+https://lavonjgreen.github.io/Random-Password-Generator/
 
+## Screenshot
+![Alt-text]screenshot.png
