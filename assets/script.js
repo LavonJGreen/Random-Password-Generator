@@ -28,7 +28,7 @@ function passwordLength() {
     passwordLength();
 
   } else {
-    window.alert("The next few prompts will ask you what charcater types you would like in your password. \n If you selecto no for every option the password will only have default lowercase letters.")
+    window.alert("The next few prompts will ask you what charcater types you would like in your password. \n If you select no for every option the password will only have default lowercase letters.")
   }
 
   return passwordLgth;
@@ -144,6 +144,8 @@ function specialCharSelection() {
   return selectSpecialChar;
 };
 
+
+// this functions combines the values to generate the random password
 function generatePassword() {
   passwordLength();
   console.log(passwordLgth);
@@ -157,7 +159,7 @@ function generatePassword() {
   specialCharSelection();
   console.log(selectSpecialChar);
 
-
+// This code concatenates the variable saved to be called if selected by the user
   var characters = lowercaseLetters;
   var password = "";
   if (selectUppercase && selectNum && selectSpecialChar) {
