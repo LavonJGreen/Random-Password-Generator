@@ -7,11 +7,12 @@ var generateBtn = document.querySelector("#generate");
 var lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
 var uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var numericCharacters = "0123456789";
-var specialCharacters = !"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+var specialCharacters = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+var passwordLgth;
 var selectUppercase;
 var selectNum;
 var selectSpecialChar;
-var passwordLgth
+
 
 
 // promt for password length 
@@ -28,46 +29,17 @@ function passwordLength() {
     passwordLength();
 
   } else {
-    window.alert("The next few prompts will ask you what charcater types you would like in your password. \n If you select no for every option the password will only have default lowercase letters.")
+    window.alert("The next few prompts will ask you what charcater types you would like in your password. \n If you select no for every option the password will only have default lowercase letters.");
   }
 
   return passwordLgth;
 };
 
-
-// Prompt for password inclduing lowercase
-/*function lowercaseSelection(){
-
-   selectLowercase = window.prompt("Would you like to include lowercase letters in your password \n(Yes or No) ");
-
-  if(selectLowercase === null || selectLowercase === ""){
-    window.alert("Please choose a valid option");
-    lowercaseSelection();
-
-  } else if(selectLowercase === "Yes" || selectLowercase === "yes" || selectLowercase === "YES"){
-    selectLowercase = true;
-    return selectLowercase;
-
-  } else if(selectLowercase === "No" || selectLowercase === "no" || selectLowercase === "NO") {
-    selectLowercase = false;
-    return selectLowercase;
-
-  } else{
-    window.alert("Please choose a valid option");
-    lowercaseSelection()
-
-  }
-
-  return selectLowercase;
-};*/
-
-
-
-
 // Prompt for password including uppercase
 function uppercaseSelection() {
 
   selectUppercase = window.prompt("Would you like to include Uppercase letters in your password \n(Yes or No) ");
+
 
   if (selectUppercase === null || selectUppercase === "") {
     window.alert("Please choose a valid option");
@@ -100,11 +72,11 @@ function numberSelection() {
     window.alert("Please choose a valid option");
     numberSelection();
 
-  } else if (selectNum === "Yes" || selectNum === "yes" || selectNum === "YES") {
+  } else if (selectNum === "Yes" || selectNum === "yes" ) {
     selectNum = true;
     return selectNum;
 
-  } else if (selectNum === "No" || selectNum === "no" || selectNum === "NO") {
+  } else if (selectNum === "No" || selectNum === "no") {
     selectNum = false;
     return selectNum;
 
@@ -127,11 +99,11 @@ function specialCharSelection() {
     window.alert("Please choose a valid option");
     specialCharSelection();
 
-  } else if (selectSpecialChar === "Yes" || selectSpecialChar === "yes" || selectSpecialChar === "YES") {
+  } else if (selectSpecialChar === "Yes" || selectSpecialChar === "yes") {
     selectSpecialChar = true;
     return selectSpecialChar;
 
-  } else if (selectSpecialChar === "No" || selectSpecialChar === "no" || selectSpecialChar === "NO") {
+  } else if (selectSpecialChar === "No" || selectSpecialChar === "no") {
     selectSpecialChar = false;
     return selectSpecialChar;
 
@@ -159,47 +131,42 @@ function generatePassword() {
   specialCharSelection();
   console.log(selectSpecialChar);
 
-// This code concatenates the variable saved to be called if selected by the user
+  // This code concatenates the variable saved to be called if selected by the user
   var characters = lowercaseLetters;
   var password = "";
-  if (selectUppercase && selectNum && selectSpecialChar) {
-    characters += + selectUppercase + selectNum + selectSpecialChar;
-
+  if (selectUppercase && selectNum && selectSpecialChar){
+    characters += uppercaseLetters + numericCharacters + specialCharacters;
   } else if (selectUppercase && selectNum) {
-    characters += selectUppercase + selectNum;
-
+    characters += uppercaseLetters + numericCharacters;
   } else if (selectNum && selectSpecialChar) {
-    characters += selectNum + selectSpecialChar;
-
+    characters += numericCharacters + specialCharacters;
   } else if (selectUppercase && selectSpecialChar) {
-    characters += selectUppercase + selectSpecialChar;
-
+    characters += uppercaseLetters + specialCharacters;
   } else if (selectUppercase) {
-    characters += uppercaseChar;
-
+    characters += uppercaseLetters;
   } else if (selectNum) {
-    characters += numberChar;
-
+    characters += numericCharacters;
   } else if (selectSpecialChar) {
-    characters += specialChar;
-
+    characters += specialCharacters;
   } else {
     characters === lowercaseLetters;
   }
 
+  // using charAt to select charcetrs from all the variables and usuing Math to make sure all numbers are whole numbers
+  
   for (var i = 0; i < passwordLgth; i++) {
     password += characters.charAt(Math.floor(Math.random() * characters.length));
   }
   return password;
-}
+};
 
 
 // Write password to the #password input
 function writePassword() {
 
-  var password1 = generatePassword();
+  var passwordCreate = generatePassword();
   var passwordText = document.querySelector("#password");
-  passwordText.value = password1;
+  passwordText.value = passwordCreate;
 
 }
 
